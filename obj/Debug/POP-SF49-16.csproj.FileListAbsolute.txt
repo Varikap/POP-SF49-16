@@ -1,6 +1,0 @@
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\bin\Debug\POP-SF49-16.exe.config
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\obj\Debug\POP-SF49-16.csprojResolveAssemblyReference.cache
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\bin\Debug\POP-SF49-16.exe
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\bin\Debug\POP-SF49-16.pdb
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\obj\Debug\POP-SF49-16.exe
-c:\users\sf49-2016\documents\visual studio 2015\Projects\POP-SF49-16\POP-SF49-16\obj\Debug\POP-SF49-16.pdb
