@@ -9,10 +9,8 @@ namespace POP_SF49_16.Model
     class Akcija
     {
         public int Id { get; set; }
-        public bool Obrisan { get; set; }
-
-        public DateTime Pocetak { get; set; }
-        public DateTime Zavrsetak { get; set; }
+        public DateTime Datum_Pocetka { get; set; }
         public decimal Popust { get; set; }
+        public DateTime Datum_Zavrsetka { get; set; }
     }
 }

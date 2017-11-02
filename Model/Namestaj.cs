@@ -11,10 +11,10 @@ namespace POP_SF49_16.Model
         public int Id { get; set; }
         public string Naziv { get; set; }
 
-        public int Cena { get; set; }
+        public double Cena { get; set; }
 
         public int Kolicina { get; set; }
 
-        //tip namestaja odradi
+        public TipNamestaja Tip_Namestaja { get; set; }
     }
 }

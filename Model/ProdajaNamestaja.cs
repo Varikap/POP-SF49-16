@@ -15,6 +15,6 @@ namespace POP_SF49_16.Model
 
         public string Kupac { get; set; }
 
-        // dodati za pdv i metodu racunjanja cene sa pdvom
+        
     }
 }

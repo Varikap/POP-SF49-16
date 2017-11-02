@@ -9,18 +9,22 @@ namespace POP_SF49_16.Model
     class Salon
     {
         public int Id { get; set; }
+
         public string Naziv { get; set; }
 
         public string Adresa { get; set; }
 
-        public string Telefon { get; set; }
-
         public string Email { get; set; }
 
-        public string WebStranica { get; set; }
+        public string BrojZiroRacuna { get; set; }
 
         public int PIB { get; set; }
 
-        public string ZiroRacun { get; set; }
+        public string Telefon { get; set; }
+
+        public int MaticniBroj { get; set; }
+
+        public string Websajt { get; set; }
+
     }
 }
