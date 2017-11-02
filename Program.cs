@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using POP_SF49_16.Model;
+using POP_SF49_16.Utils;
 
 namespace POP_SF49_16
 {
@@ -100,8 +101,17 @@ namespace POP_SF49_16
             korisnici.Add(k1);
             korisnici.Add(k2);
 
-            Console.WriteLine("  .::Dobrodosli u  " + s1.Naziv + "::.");
-            LogIn();
+            //List< Namestaj >  listaNamestaja = GemericSerializer.Deserializer<Namestaj>("namestaj.xml");
+            
+            
+            var listaNamestaja = new List<Namestaj>();
+            listaNamestaja.Add(n1);
+
+            GemericSerializer.Seserializer<Namestaj>("listaNam.xml", listaNamestaja);
+            Console.WriteLine("nesto");
+
+            //Console.WriteLine("  .::Dobrodosli u  " + s1.Naziv + "::.");
+            //LogIn();
 
         }
         private static void Meni()
@@ -618,7 +628,7 @@ namespace POP_SF49_16
                 string password = Console.ReadLine();
 
                 Console.WriteLine("Unesite tip korisnika od ponudjenih korisnika: ");
-                Console.WriteLine("Admin);
+                Console.WriteLine("Admin");
                 Console.WriteLine("Korisnik");
                 if (izbor == 2)
                 {

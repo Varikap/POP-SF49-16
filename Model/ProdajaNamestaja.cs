@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF49_16.Model
 {
-    class ProdajaNamestaja
+    public class ProdajaNamestaja
     {
         public int KolicinaProdaje { get; set; }
         public DateTime DatumProdaje { get; set; }

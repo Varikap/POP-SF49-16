@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF49_16.Model
 {
-    class TipNamestaja
+    public class TipNamestaja
     {
         public int Id { get; set; }
 
