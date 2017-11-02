@@ -22,32 +22,32 @@ namespace POP_SF49_16
             };
             var k1 = new Korisnik
             {
-                Ime = "Ben",
-                Prezime = "Dover",
-                Username = "Gachimuchi",
-                Password = "billybogotac",
-                Tip_Korisnika = "Lud"
+                Ime = "Nikola",
+                Prezime = "Peric",
+                Username = "a",
+                Password = "a",
+                Tip_Korisnika = "admin"
 
 
             };
             var k2 = new Korisnik
             {
-                Ime = "Orange",
-                Prezime = "Black",
-                Username = "T H I C C",
-                Password = "extra thicc",
-                Tip_Korisnika = "Niza klasa"
+                Ime = "Pera",
+                Prezime = "Peric",
+                Username = "b",
+                Password = "b",
+                Tip_Korisnika = "korisnik"
 
 
             };
             var s1 = new Salon
             {
                 Id = 1,
-                Naziv = "ayy lmao",
-                Adresa = "Lenke Dundjerski 32a",
-                BrojZiroRacuna = "30213941",
-                Email = "ritopls@nesto.com",
-                PIB = 3,
+                Naziv = "bla",
+                Adresa = "Mise Dimitrijevica",
+                BrojZiroRacuna = "6666666",
+                Email = "bla@gmail.com",
+                PIB = 2,
                 MaticniBroj = 2013124,
                 Telefon = "021/461-018",
                 Websajt = "nema"
@@ -134,14 +134,13 @@ namespace POP_SF49_16
             }
             catch (Exception ex)
             {
-                Console.WriteLine("  Samo broj ffs");
+                Console.WriteLine("Unesite samo broj");
                 Meni();
             }
         }
 
         private static void GlavniMeni()
         {
-            ///            funkcija za ispis menija i pozivanje odgovarajuce funkcije
             Console.WriteLine("  ");
             Console.WriteLine("  Izaberite jednu od sledecih opcija:");
             Console.WriteLine("  1 - Prikaz namestaja na stanju");
@@ -157,7 +156,6 @@ namespace POP_SF49_16
 
         private static void GlavniMeni2()
         {
-            ///            funkcija za ispis menija i pozivanje odgovarajuce funkcije
             Console.WriteLine("  ");
             Console.WriteLine("  Izaberite jednu od sledecih opcija:");
             Console.WriteLine("  1 - Prikaz svih korisnika");
@@ -262,7 +260,6 @@ namespace POP_SF49_16
 
         private static void Brisanje_korisnika()
         {
-            ///funkcija koja trazi username korisnika, i brise ga iz liste
             Console.WriteLine("Unesite Username korisnika kojeg zelite da obrisete: ");
             foreach (Korisnik n in korisnici)
             {
@@ -293,8 +290,6 @@ namespace POP_SF49_16
 
         private static void Prikaz_Korisnika()
         {
-            ///            Funkcija koja prolazi kroz listu sa objektima i prikazuje njihove atribute
-
 
             Console.WriteLine("  Izabrali ste prikaz namestaja: ");
             foreach (Korisnik n in korisnici)
@@ -412,7 +407,7 @@ namespace POP_SF49_16
                 }
             }
         }
-        // sdafsgdhhfn
+
         private static void Unos_vrednosti_namestaja(int kd, int izbor)
         {
             ///            funkcija koja prima id i izbor i na osnovu toga
@@ -623,15 +618,15 @@ namespace POP_SF49_16
                 string password = Console.ReadLine();
 
                 Console.WriteLine("Unesite tip korisnika od ponudjenih korisnika: ");
-                Console.WriteLine("Lud");
-                Console.WriteLine("Niza klasa");
+                Console.WriteLine("Admin);
+                Console.WriteLine("Korisnik");
                 if (izbor == 2)
                 {
                     try
                     {
 
                         string tip = Console.ReadLine();
-                        if (tip.Equals("Lud") || tip.Equals("Niza klasa"))
+                        if (tip.Equals("admin") || tip.Equals("korisnik"))
                         {
                             var k = new Korisnik
                             {
@@ -661,7 +656,7 @@ namespace POP_SF49_16
                     {
 
                         string tip = Console.ReadLine();
-                        if (tip.Equals("Lud") || tip.Equals("Niza klasa"))
+                        if (tip.Equals("admin") || tip.Equals("korisnik"))
                         {
                             foreach (Korisnik n in korisnici)
                             {
@@ -710,7 +705,7 @@ namespace POP_SF49_16
                     string unos2 = Console.ReadLine();
                     if (unos2.Equals(k.Password))
                     {
-                        Console.WriteLine("BRAVO! ulogovani ste kao: " + k.Ime + " " + k.Prezime);
+                        Console.WriteLine("Ulogovani ste kao: " + k.Ime + " " + k.Prezime);
                         Meni();
                     }
                     else
