@@ -2,3 +2,7 @@
 
 Platforme za objektno programiranje
 Salon namestaja
+
+Login
+Username: ni
+Password: no

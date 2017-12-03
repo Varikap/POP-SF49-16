@@ -8,4 +8,28 @@
     <Ime>nikola</Ime>
     <Prezime>nikolic</Prezime>
   </Korisnik>
+  <Korisnik>
+    <Obrisan>false</Obrisan>
+    <Tip_Korisnika>korisnik</Tip_Korisnika>
+    <Password>71c61afd3e6c02b5e4c2b4234787bd42baf83efd</Password>
+    <Username>mi</Username>
+    <Ime>Milos</Ime>
+    <Prezime>Popadic</Prezime>
+  </Korisnik>
+  <Korisnik>
+    <Obrisan>false</Obrisan>
+    <Tip_Korisnika>korisnik</Tip_Korisnika>
+    <Password>86f7e437faa5a7fce15d1ddcb9eaeaea377667b8</Password>
+    <Username>a</Username>
+    <Ime>Pera</Ime>
+    <Prezime>Ristic</Prezime>
+  </Korisnik>
+  <Korisnik>
+    <Obrisan>false</Obrisan>
+    <Tip_Korisnika>korisnik</Tip_Korisnika>
+    <Password>e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98</Password>
+    <Username>b</Username>
+    <Ime>Miso</Ime>
+    <Prezime>Petricevic</Prezime>
+  </Korisnik>
 </ArrayOfKorisnik>

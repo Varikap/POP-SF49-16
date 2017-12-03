@@ -22,7 +22,6 @@ namespace POP_SF49_16GUI.GUI
     /// </summary>
     public partial class AdminWindow : Window
     {
-        private Korisnik ulogovani_korisnik;
         private ICollectionView view;
 
         public Korisnik IzabraniKorisnik { get; set; }
@@ -84,6 +83,17 @@ namespace POP_SF49_16GUI.GUI
                     var window = new TipNamestajaWindow(1, zaDodati);
                     window.ShowDialog();
                 }
+                else if(operacija.Equals("akcija"))
+                {
+                    var zaDodati = new Akcija()
+                    {
+                        Popust = 0,
+                        Datum_Pocetka = DateTime.Now,
+                        Datum_Zavrsetka = DateTime.Now
+                    };
+                    var window = new AkcijeWindow(1, zaDodati);
+                    window.ShowDialog();
+                }
                 view.Refresh();
             }
 
@@ -130,13 +140,24 @@ namespace POP_SF49_16GUI.GUI
                 if (dgPrikaz.SelectedItem != null)
                 {
                     TipNamestaja prosledjenTip = (TipNamestaja)Objekat;
-                    var window = new TipNamestajaWindow(2, prosledjenTip);
+                    TipNamestaja zaIzmenu = (TipNamestaja)prosledjenTip.Clone();
+                    var window = new TipNamestajaWindow(2, zaIzmenu);
                     window.ShowDialog();
 
                 }
                 else
                 {
                     MessageBox.Show(" Morate izabrati objekat za izmenu!! ");
+                }
+            }
+            else if (operacija.Equals("akcija"))
+            {
+                if (dgPrikaz.SelectedItem != null)
+                {
+                    Akcija prosledjenaAkcija = (Akcija)Objekat;
+                    Akcija zaIzmenu = (Akcija)prosledjenaAkcija.Clone();
+                    var window = new AkcijeWindow(2, zaIzmenu);
+                    window.ShowDialog();
                 }
             }
         }
@@ -232,7 +253,7 @@ namespace POP_SF49_16GUI.GUI
                         {
                             if (n.Id == ob.Id)
                             {
-                                if (n.Datum_Zavrsetka > System.DateTime.Now)
+                                if (n.Datum_Zavrsetka < System.DateTime.Now)
                                 {
                                     lista_akcija.Remove(n);
                                     GenericSerialize.Serialize("Akcije.xml", lista_akcija);
@@ -309,6 +330,7 @@ namespace POP_SF49_16GUI.GUI
             dgPrikaz.IsSynchronizedWithCurrentItem = true;
             dgPrikaz.DataContext = this;
             dgPrikaz.ItemsSource = RadSaPodacima.Instance.Korisnici;
+            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void akcije_Click(object sender, RoutedEventArgs e)
@@ -316,10 +338,12 @@ namespace POP_SF49_16GUI.GUI
             operacija = "akcija";
             Objekat = null;
             Objekat = IzabranaAkcija;
-            dgPrikaz.ItemsSource = null;
-            dgPrikaz.IsSynchronizedWithCurrentItem = true;
             dgPrikaz.DataContext = this;
-            dgPrikaz.ItemsSource = RadSaPodacima.Instance.Akcije;
+            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.Akcije);
+            dgPrikaz.ItemsSource = null;
+            dgPrikaz.ItemsSource = view;
+            dgPrikaz.IsSynchronizedWithCurrentItem = true;
+            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void tipoviNamestaja_Click(object sender, RoutedEventArgs e)
@@ -330,7 +354,9 @@ namespace POP_SF49_16GUI.GUI
             dgPrikaz.ItemsSource = null;
             dgPrikaz.IsSynchronizedWithCurrentItem = true;
             dgPrikaz.DataContext = this;
-            dgPrikaz.ItemsSource = RadSaPodacima.Instance.TipoviNamestaja;
+            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.TipoviNamestaja);
+            dgPrikaz.ItemsSource = view;
+            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private bool PrikazNeobrisanogNamestaja(object obj)

@@ -57,6 +57,9 @@
     <Compile Include="GUI\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AkcijeWindow.xaml.cs">
+      <DependentUpon>AkcijeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\KorisnikWindow.xaml.cs">
       <DependentUpon>KorisnikWindow.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
     </Compile>
     <Compile Include="Utils\GenericSerialize.cs" />
     <Page Include="GUI\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\AkcijeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
