@@ -1,0 +1,58 @@
+﻿<Window x:Class="POP_SF49_16GUI.GUI.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF49_16GUI.GUI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Salon namestaja" Height="400" Width="600">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="_View" InputGestureText="Ctrl+V">
+                <MenuItem Name="namestaji" Header="_Namestaji" InputGestureText="Ctrl+N" Click="namestaji_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/couch.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="korisnici" Header="_Korisnici" InputGestureText="Ctrl+K" Click="korisnici_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/couch.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="akcije" Header="_Akcije" InputGestureText="Ctrl+A" Click="akcije_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/couch.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="tipoviNamestaja" Header="_Tipovi Namestaja" InputGestureText="Ctrl+T" Click="tipoviNamestaja_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/couch.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <Separator/>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Name="btnNew" ToolTip="Add new" Click="btnNew_Click">
+                    <Image Source="/Resources/Add.bmp" />
+                </Button>
+                <Button Name="btnChange" ToolTip="Change" Click="btnChange_Click">
+                    <Image Source="/Resources/Change.bmp" />
+                </Button>
+                <Button Name="btnDelete" ToolTip="Delete" Click="btnDelete_Click">
+                    <Image Source="/Resources/Delete.bmp" />
+                </Button>
+            </ToolBar>
+            
+        </ToolBarTray>
+        <Border Background="DarkSlateBlue">
+            <DataGrid IsReadOnly="True" CanUserAddRows="False" Height="300" Width="580" Margin="10" Name="dgPrikaz" SelectedItem="{Binding Path=Objekat}" AutoGeneratingColumn="prikaz3">
+                
+            </DataGrid>
+        </Border>
+        
+    </DockPanel>
+</Window>
