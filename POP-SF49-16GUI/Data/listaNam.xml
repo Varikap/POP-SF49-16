@@ -25,7 +25,7 @@
       <Naziv>krevet</Naziv>
       <Id>1</Id>
     </TipNamestaja>
-    <NaStanju>true</NaStanju>
+    <NaStanju>false</NaStanju>
     <Tip_Namestaja>1</Tip_Namestaja>
   </Namestaj>
   <Namestaj>
@@ -153,5 +153,19 @@
     </TipNamestaja>
     <NaStanju>true</NaStanju>
     <Tip_Namestaja>4</Tip_Namestaja>
+  </Namestaj>
+  <Namestaj>
+    <Id>12</Id>
+    <Naziv>Piksi</Naziv>
+    <Cena>300</Cena>
+    <Kolicina>100</Kolicina>
+    <AkcijskaCenaId>0</AkcijskaCenaId>
+    <TipNamestaja>
+      <Obrisan>false</Obrisan>
+      <Naziv>krevet</Naziv>
+      <Id>1</Id>
+    </TipNamestaja>
+    <NaStanju>true</NaStanju>
+    <Tip_Namestaja>1</Tip_Namestaja>
   </Namestaj>
 </ArrayOfNamestaj>

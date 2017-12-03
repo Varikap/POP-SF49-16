@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,22 +34,26 @@ namespace POP_SF49_16GUI
                 var korisnici = RadSaPodacima.Instance.Korisnici;
                 foreach (var korisnik in korisnici)
                 {
-                    if (tbUserName.Text.Equals(korisnik.Username) && tbPassword.Password.Equals(korisnik.Password))
+                    if (tbUserName.Text.Equals(korisnik.Username))
                     {
-                        br += 1;
-                        if (korisnik.Tip_Korisnika.Equals("admin"))
+                        string password = Hash(tbPassword.Password);
+                        if (password.Equals(korisnik.Password))
                         {
-                            var prozor = new GUI.AdminWindow();
-                            this.Hide();
-                            prozor.ShowDialog();
-                            break;
-                        }
-                        else
-                        {
-                            var prozor = new GUI.AdminWindow();
-                            this.Hide();
-                            prozor.ShowDialog();
-                            break;
+                            br += 1;
+                            if (korisnik.Tip_Korisnika.Equals("admin"))
+                            {
+                                var prozor = new GUI.AdminWindow();
+                                this.Hide();
+                                prozor.ShowDialog();
+                                break;
+                            }
+                            else
+                            {
+                                var prozor = new GUI.AdminWindow();
+                                this.Hide();
+                                prozor.ShowDialog();
+                                break;
+                            } 
                         }
                     }
                 }
@@ -65,40 +70,11 @@ namespace POP_SF49_16GUI
                 MessageBox.Show(ex.Message);
             }
 
-            /*
-            SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-3TN1TDU; Inital Catalog=LoginSalon; Integrated Security=True;");
-            try
-            {
-                if (sqlCon.State == ConnectionState.Closed)
-                    sqlCon.Open();
-
-                string query = "SELECT COUNT(1) FROM LoginSalon WHERE username=@username AND password=@password";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@username", tbUserName.Text);
-                sqlCmd.Parameters.AddWithValue("@password", tbPassword.Password);
-                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
-                if (count==1)
-                {
-                    var prozor = new GUI.NamestajWindow();
-                    prozor.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Korisnicko ime ili lozinka su neispravni!");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
-            }
-            */
+        }
+        private string Hash(string passw)
+        {
+            var hash = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(passw));
+            return string.Join("", hash.Select(b => b.ToString("x2")).ToArray());
         }
     }
 }
