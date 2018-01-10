@@ -82,6 +82,12 @@ namespace POP_SF49_16GUI.model
             set
             {
                 akcijskaCena = value;
+                if (akcijskaCena == null)
+                {
+                    akcijskaCenaId = 0;
+                }
+                else
+                    akcijskaCenaId = akcijskaCena.Id;
                 OnPropertyChanged("TipNamestaja");
             }
         }

@@ -10,11 +10,6 @@ namespace POP_SF49_16GUI.model
    public class DodatnaUsluga : INotifyPropertyChanged, ICloneable
     {
 
-        //ovako za sve ostale uradi property
-        //propfull tab tab
-        
-        //dodaj i interfejs IClonable sa njegovom must metodom za sve zbog kloniranja objekatas
-
         private int id;
 
         public int Id 
@@ -66,7 +61,6 @@ namespace POP_SF49_16GUI.model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //ovu metodu i implementaciju gore odradi za sve
         protected void OnPropertyChange(string propertyName)
         {
             if (PropertyChanged != null)

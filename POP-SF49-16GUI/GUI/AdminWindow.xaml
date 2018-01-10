@@ -21,7 +21,7 @@
                         <Image Source="/Resources/couch.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="akcije" Header="_Akcije" InputGestureText="Ctrl+A" Click="akcije_Click">
+                <MenuItem Name="MIakcije" Header="_Akcije" InputGestureText="Ctrl+A" Click="akcije_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/couch.png"/>
                     </MenuItem.Icon>
@@ -45,7 +45,7 @@
                 <Button Name="btnDelete" ToolTip="Delete" Click="btnDelete_Click">
                     <Image Source="/Resources/Delete.bmp" />
                 </Button>
-                <Button Name="btnDodajAkciju" ToolTip="Dodaj Akciju" Click="btnDodajAkciju_Click">
+                <Button Name="btnDodajAkciju" ToolTip="Dodaj Akciju" Click="btnDodajAkciju_Click" Visibility="Hidden">
                     <Image Source="/Resources/Delete.bmp" />
                 </Button>
             </ToolBar>

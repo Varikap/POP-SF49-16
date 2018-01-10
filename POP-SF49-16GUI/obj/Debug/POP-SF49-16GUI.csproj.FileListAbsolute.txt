@@ -25,3 +25,5 @@ C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\AkcijeWindow.g.cs
 C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\AkcijeWindow.baml
 C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\DodajNaAkcijuWindow.g.cs
 C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\DodajNaAkcijuWindow.baml
+C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\DodatnaUslugaWindow.g.cs
+C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\obj\Debug\GUI\DodatnaUslugaWindow.baml

@@ -16,14 +16,15 @@ namespace POP_SF49_16GUI.model
         public ObservableCollection<Korisnik> Korisnici { get; set; }
         public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
         public ObservableCollection<Namestaj> Namestaj { get; set; }
-
         public ObservableCollection<Akcija> Akcije { get; set; }
+        public ObservableCollection<DodatnaUsluga> DodatneUsluge { get; set;}
         private RadSaPodacima()
         {
             TipoviNamestaja = GenericSerialize.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
             Namestaj = GenericSerialize.Deserialize<Namestaj>("listaNam.xml");
             Korisnici = GenericSerialize.Deserialize<Korisnik>("Korisnici.xml");
             Akcije = GenericSerialize.Deserialize<Akcija>("Akcije.xml");
+           // DodatneUsluge = GenericSerialize.Deserialize<DodatnaUsluga>("DodatneUsluge.xml");
         }
 
     }

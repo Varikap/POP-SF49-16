@@ -33,7 +33,7 @@
     <Prezime>Petricevicc</Prezime>
   </Korisnik>
   <Korisnik>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Tip_Korisnika>admin</Tip_Korisnika>
     <Password>1257ee4cb238affd46ef15d06714525c2c7c9018</Password>
     <Username>fds</Username>

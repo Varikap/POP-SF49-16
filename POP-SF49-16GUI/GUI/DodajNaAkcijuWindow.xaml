@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF49_16GUI.GUI"
         mc:Ignorable="d"
-        Title="DodajNaAkcijuWindow" Height="380" Width="360">
+        Title="DodajNaAkcijuWindow" Height="300" Width="360">
     <Border Padding="7">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -13,19 +13,17 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <Label Content="Dodaj na akciju"></Label>
-                <Button Content="Dodavanje" Name="btnDodavanje" Click="btnDodavanje_Click"></Button>
-                <Label Content="lbNamestaj" Margin="7 7"></Label>
+                <Button Content="Dodaj na akciju" Name="btnDodavanje" Click="btnDodavanje_Click" Margin="15 0 15 0" ></Button>
+                <Label Content="Namestaj" Margin="7 7"></Label>
                 <ComboBox Name="cbNamestaj" Margin="7 7" SelectedItem="{Binding Path=Namestaj}"></ComboBox>
-                <Label Content="lbAkcija" Margin="7 7"></Label>
+                <Label Content="Akcija" Margin="7 7"></Label>
                 <ComboBox Name="cbAkcija" Margin="7 7" SelectedItem="{Binding Path=Akcija}"></ComboBox>
                 <Button Name="btnDodaj" Content="Dodaj" Margin="7 7" Click="btnDodaj_Click"></Button>
                 
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-                <Label Content="Ukloni sa akcije"></Label>
-                <Button Content="Uklanjanje" Name="btnUkloni" Click="btnUkloni_Click"></Button>
+                <Button Content="Ukloni sa akcije" Name="btnUkloni" Click="btnUkloni_Click" Margin="15 0 15 0"></Button>
                 <Label Content="Namestaj" Margin="7 7"></Label>
                 <ComboBox Name="cbUklonjenNamestaj" Margin="7 7" SelectedItem="{Binding Path=Namestaj}"></ComboBox>
                 <Button Content="Nazad" Name="btnNazad" Click="btnNazad_Click" Margin="1 83 1 1"></Button>

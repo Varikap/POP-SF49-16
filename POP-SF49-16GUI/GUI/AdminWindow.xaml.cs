@@ -44,6 +44,7 @@ namespace POP_SF49_16GUI.GUI
         public AdminWindow()
         {
             InitializeComponent();
+            proveraAkcija();
             dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -317,6 +318,7 @@ namespace POP_SF49_16GUI.GUI
         private void namestaji_Click(object sender, RoutedEventArgs e)
         {
             operacija = "namestaj";
+            btnDodajAkciju.Visibility = Visibility.Hidden;
             Objekat = null;
             Objekat = IzabraniNamestaj;
             dgPrikaz.DataContext = this;
@@ -332,9 +334,10 @@ namespace POP_SF49_16GUI.GUI
         private void korisnici_Click(object sender, RoutedEventArgs e)
         {
             operacija = "korisnik";
+            btnDodajAkciju.Visibility = Visibility.Hidden;
             Objekat = null;
             Objekat = IzabraniKorisnik;
-            dgPrikaz.ItemsSource = null; //ispitaj da li moze bez ovog xd
+            dgPrikaz.ItemsSource = null;
             view = null;
             view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.Korisnici);
             dgPrikaz.IsSynchronizedWithCurrentItem = true;
@@ -346,6 +349,7 @@ namespace POP_SF49_16GUI.GUI
         private void akcije_Click(object sender, RoutedEventArgs e)
         {
             operacija = "akcija";
+            btnDodajAkciju.Visibility = Visibility.Visible;
             Objekat = null;
             Objekat = IzabranaAkcija;
             dgPrikaz.DataContext = this;
@@ -359,6 +363,7 @@ namespace POP_SF49_16GUI.GUI
         private void tipoviNamestaja_Click(object sender, RoutedEventArgs e)
         {
             operacija = "tipNamestaja";
+            btnDodajAkciju.Visibility = Visibility.Hidden;
             Objekat = null;
             Objekat = IzabraniTipNamestaja;
             dgPrikaz.ItemsSource = null;
@@ -381,7 +386,7 @@ namespace POP_SF49_16GUI.GUI
 
         private void prikaz3(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.Header.ToString() == "AkcijskaCenaId" || e.Column.Header.ToString() == "AkcijskaCena" || e.Column.ToString() == "NaStanju")
+            if (e.Column.Header.ToString() == "AkcijskaCenaId" || e.Column.ToString() == "NaStanju" || e.Column.Header.ToString() == "Password" || e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "NaStanju" || e.Column.Header.ToString() == "Obrisan")
             {
                 e.Cancel = true;
 
@@ -392,6 +397,28 @@ namespace POP_SF49_16GUI.GUI
         {
             var Window = new DodajNaAkcijuWindow();
             Window.ShowDialog();
+        }
+
+        private void proveraAkcija ()
+        {
+            var listaAkcija = RadSaPodacima.Instance.Akcije;
+            var listaNamestaja = RadSaPodacima.Instance.Namestaj;
+            foreach (Akcija a in listaAkcija)
+            {
+                if (a.Datum_Zavrsetka < DateTime.Now)
+                {
+                    listaAkcija.Remove(a);
+                    foreach (Namestaj n in listaNamestaja)
+                    {
+                        if (n.AkcijskaCena == a)
+                        {
+                            n.AkcijskaCena = null;
+                        }
+                    }
+                }
+            }
+            GenericSerialize.Serialize("listaNam.xml", listaNamestaja);
+            GenericSerialize.Serialize("Akcije.xml", listaAkcija);
         }
     }
 }

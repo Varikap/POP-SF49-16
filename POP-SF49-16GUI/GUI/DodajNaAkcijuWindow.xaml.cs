@@ -1,6 +1,8 @@
 ﻿using POP_SF49_16GUI.model;
+using POP_SF49_16GUI.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,27 +22,60 @@ namespace POP_SF49_16GUI.GUI
     /// </summary>
     public partial class DodajNaAkcijuWindow : Window
     {
+        string operacija;
+        private ICollectionView viewSaAkcijom;
+        private ICollectionView viewBezAkcije;
         public DodajNaAkcijuWindow()
         {
             InitializeComponent();
-            cbNamestaj.ItemsSource = RadSaPodacima.Instance.Namestaj;
+            viewBezAkcije = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.Namestaj);
+            viewSaAkcijom = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.Namestaj);
+            viewBezAkcije.Filter = PrikazNamestajaBezAkcije;
+            viewSaAkcijom.Filter = PrikazNamestajaSaAkcijom;
+            cbNamestaj.ItemsSource = viewBezAkcije;
+            cbUklonjenNamestaj.ItemsSource = viewSaAkcijom;
             cbAkcija.ItemsSource = RadSaPodacima.Instance.Akcije;
-            cbUklonjenNamestaj.ItemsSource = RadSaPodacima.Instance.Namestaj;
 
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-
+            var listaNam = RadSaPodacima.Instance.Namestaj;
+            if (operacija.Equals("dodavanje"))
+            {
+                foreach (Namestaj n in listaNam)
+                {
+                    if (n == cbNamestaj.SelectedItem)
+                    {
+                        Akcija kcija = (Akcija)cbAkcija.SelectedItem;
+                        n.AkcijskaCena = kcija;
+                        break;
+                    }
+                }
+                GenericSerialize.Serialize("listaNam.xml", listaNam);
+            }
+            else if (operacija.Equals("uklanjanje"))
+            {
+                foreach (Namestaj n in listaNam)
+                {
+                    if (n == cbUklonjenNamestaj.SelectedItem)
+                    {
+                        n.AkcijskaCena = null;
+                        break;
+                    }
+                }
+                GenericSerialize.Serialize("listaNam.xml", listaNam);
+            }
         }
 
         private void btnDodavanje_Click(object sender, RoutedEventArgs e)
         {
+            operacija = "dodavanje";
             cbUklonjenNamestaj.IsEnabled = false;
             cbUklonjenNamestaj.Background = new SolidColorBrush(Colors.LightGray);
             cbNamestaj.IsEnabled = true;
@@ -53,6 +88,7 @@ namespace POP_SF49_16GUI.GUI
 
         private void btnUkloni_Click(object sender, RoutedEventArgs e)
         {
+            operacija = "uklanjanje";
             cbUklonjenNamestaj.IsEnabled = true;
             cbUklonjenNamestaj.Background = new SolidColorBrush(Colors.LightGray);
             cbNamestaj.IsEnabled = false;
@@ -61,6 +97,15 @@ namespace POP_SF49_16GUI.GUI
             cbAkcija.Background = new SolidColorBrush(Colors.White);
             btnUkloni.Background = new SolidColorBrush(Colors.Gray);
             btnDodavanje.Background = new SolidColorBrush(Colors.LightGray);
+        }
+
+        private bool PrikazNamestajaSaAkcijom(object obj)
+        {
+            return ((Namestaj)obj).NaStanju == true;
+        }
+        private bool PrikazNamestajaBezAkcije(object obj)
+        {
+            return ((Namestaj)obj).NaStanju == true;
         }
     }
 }

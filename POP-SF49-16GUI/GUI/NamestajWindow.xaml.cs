@@ -2,6 +2,7 @@
 using POP_SF49_16GUI.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace POP_SF49_16GUI.GUI
     /// </summary>
     public partial class NamestajWindow : Window
     {
+        private ICollectionView view;
         private Namestaj odabrani;
         int pbroj = 0;
 
@@ -32,8 +34,9 @@ namespace POP_SF49_16GUI.GUI
 
             pbroj = broj;
 
-
-            cbTip.ItemsSource = RadSaPodacima.Instance.TipoviNamestaja;
+            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.TipoviNamestaja);
+            view.Filter = PrikazNeobrisanogTipaNamestaja; 
+            cbTip.ItemsSource = view;
             tbCena.DataContext = odabrani;
             tbKolicina.DataContext = odabrani;
             tbNaziv.DataContext = odabrani;
@@ -139,6 +142,11 @@ namespace POP_SF49_16GUI.GUI
 
             }
 
+        }
+
+        private bool PrikazNeobrisanogTipaNamestaja(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
         }
     }
 }

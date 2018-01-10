@@ -26,7 +26,7 @@
     <Id>5</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Naziv>novii2</Naziv>
     <Id>6</Id>
   </TipNamestaja>

@@ -19,7 +19,14 @@
     <Naziv>Lenja Vreca</Naziv>
     <Cena>100</Cena>
     <Kolicina>4</Kolicina>
-    <AkcijskaCenaId>0</AkcijskaCenaId>
+    <AkcijskaCenaId>1</AkcijskaCenaId>
+    <AkcijskaCena>
+      <Naziv>Bozicni pop</Naziv>
+      <Id>1</Id>
+      <Datum_Pocetka>2018-01-09T17:16:17.1270077+01:00</Datum_Pocetka>
+      <Datum_Zavrsetka>2018-01-31T00:00:00</Datum_Zavrsetka>
+      <Popust>420</Popust>
+    </AkcijskaCena>
     <TipNamestaja>
       <Obrisan>false</Obrisan>
       <Naziv>krevet</Naziv>
