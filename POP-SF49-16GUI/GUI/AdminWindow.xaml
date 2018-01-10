@@ -37,7 +37,7 @@
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
                 <Button Name="btnNew" ToolTip="Add new" Click="btnNew_Click">
-                    <Image Source="/Resources/Add.bmp" />
+                    <Image Source="/Resources/Add.png" Height="21" Width="18" />
                 </Button>
                 <Button Name="btnChange" ToolTip="Change" Click="btnChange_Click">
                     <Image Source="/Resources/Change.bmp" />
@@ -45,14 +45,17 @@
                 <Button Name="btnDelete" ToolTip="Delete" Click="btnDelete_Click">
                     <Image Source="/Resources/Delete.bmp" />
                 </Button>
+                <Button Name="btnDodajAkciju" ToolTip="Dodaj Akciju" Click="btnDodajAkciju_Click">
+                    <Image Source="/Resources/Delete.bmp" />
+                </Button>
             </ToolBar>
-            
+
         </ToolBarTray>
         <Border Background="DarkSlateBlue">
             <DataGrid IsReadOnly="True" CanUserAddRows="False" Height="300" Width="580" Margin="10" Name="dgPrikaz" SelectedItem="{Binding Path=Objekat}" AutoGeneratingColumn="prikaz3">
-                
+
             </DataGrid>
         </Border>
-        
+
     </DockPanel>
 </Window>

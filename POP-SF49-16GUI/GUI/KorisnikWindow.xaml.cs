@@ -17,18 +17,20 @@ using System.Windows.Shapes;
 
 namespace POP_SF49_16GUI.GUI
 {
-    /// <summary>
-    /// Interaction logic for KorisnikWindow.xaml
-    /// </summary>
     public partial class KorisnikWindow : Window
     {
-        int kbroj = 0;
+        private int kbroj = 0;
         private Korisnik izabrani;
         public KorisnikWindow(int broj, Korisnik objekat)
         {
             InitializeComponent();
             izabrani = objekat;
             kbroj = broj;
+            if (kbroj == 2)
+            {
+                tbUsername.IsReadOnly = true;
+                tbUsername.Background = new SolidColorBrush(Colors.LightGray);
+            }
             TipoviKorisnika();
             tbIme.DataContext = izabrani;
             tbPrezime.DataContext = izabrani;
@@ -63,7 +65,6 @@ namespace POP_SF49_16GUI.GUI
             {
                 msg_prazno = true;
                 poruka += " Prezime ";
-
             }
 
             if (tbUsername.Text == "")
@@ -79,6 +80,7 @@ namespace POP_SF49_16GUI.GUI
                     if (k.Username.Equals(tbUsername.Text))
                     {
                         msg_greska = true;
+                        break;
                     }
                 }
 

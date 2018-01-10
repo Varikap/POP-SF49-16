@@ -10,10 +10,20 @@ namespace POP_SF49_16GUI.model
     public class Akcija : INotifyPropertyChanged, ICloneable
     {
         private int id;
+        private string naziv;
         private DateTime datum_pocetka;
         private int popust;
         private DateTime datum_zavrsetka;
 
+        public string Naziv
+        {
+            get { return naziv; }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
         public int Id
         {
             get { return id; }
@@ -82,7 +92,8 @@ namespace POP_SF49_16GUI.model
                 Id = id,
                 Datum_Pocetka = datum_pocetka,
                 Datum_Zavrsetka = datum_zavrsetka,
-                Popust = popust
+                Popust = popust,
+                Naziv = naziv
             };
         }
     }

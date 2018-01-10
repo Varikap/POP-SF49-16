@@ -269,6 +269,7 @@ namespace POP_SF49_16GUI.GUI
                 else if (operacija.Equals("tipNamestaja"))
                 {
                     var lista_tipova = RadSaPodacima.Instance.TipoviNamestaja;
+                    var lista_namestaja = RadSaPodacima.Instance.Namestaj;
                     var ob = (TipNamestaja)Objekat;
                     if (ob == null)
                     {
@@ -283,8 +284,16 @@ namespace POP_SF49_16GUI.GUI
                                 if (n.Obrisan == false)
                                 {
                                     n.Obrisan = true;
+                                    foreach (Namestaj nam in lista_namestaja)
+                                    {
+                                        if (nam.Tip_Namestaja == n.Id)
+                                        {
+                                            nam.NaStanju = false;
+                                        }
+                                    }
                                     GenericSerialize.Serialize("tipovi_namestaja.xml", lista_tipova);
-
+                                    GenericSerialize.Serialize("listaNam.xml", lista_namestaja);
+                                    view.Refresh();
                                     break;
                                 }
                                 else if (n.Obrisan == true)
@@ -294,6 +303,7 @@ namespace POP_SF49_16GUI.GUI
 
                                     break;
                                 }
+                                
 
                             }
                         }
@@ -355,6 +365,7 @@ namespace POP_SF49_16GUI.GUI
             dgPrikaz.IsSynchronizedWithCurrentItem = true;
             dgPrikaz.DataContext = this;
             view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.TipoviNamestaja);
+            view.Filter = PrikazNeobrisanogTipaNamestaja;
             dgPrikaz.ItemsSource = view;
             dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
@@ -363,6 +374,11 @@ namespace POP_SF49_16GUI.GUI
         {
             return ((Namestaj)obj).NaStanju == true;
         }
+        private bool PrikazNeobrisanogTipaNamestaja(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
+        }
+
         private void prikaz3(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "AkcijskaCenaId" || e.Column.Header.ToString() == "AkcijskaCena" || e.Column.ToString() == "NaStanju")
@@ -370,6 +386,12 @@ namespace POP_SF49_16GUI.GUI
                 e.Cancel = true;
 
             }
+        }
+
+        private void btnDodajAkciju_Click(object sender, RoutedEventArgs e)
+        {
+            var Window = new DodajNaAkcijuWindow();
+            Window.ShowDialog();
         }
     }
 }

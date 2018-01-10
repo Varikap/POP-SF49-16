@@ -25,6 +25,7 @@ namespace POP_SF49_16GUI.GUI
             InitializeComponent();
             pbroj = broj;
             odabrana = objekat;
+            tbNaziv.DataContext = odabrana;
             dpKraj.DataContext = odabrana;
             dpPocetak.DataContext = odabrana;
             tbPopust.DataContext = odabrana;
@@ -44,6 +45,11 @@ namespace POP_SF49_16GUI.GUI
             string poruka = "Niste uneli polje";
             string pogresno = "Pocetak akcije ne moze biti veci od kraja";
             int temp;
+            if (tbNaziv.Text =="")
+            {
+                msg_prazno = true;
+                poruka += "naziv";
+            }
             if (dpKraj.Text == "")
             {
                 msg_prazno = true;
@@ -85,6 +91,7 @@ namespace POP_SF49_16GUI.GUI
                 {
                     if (a.Id == odabrana.Id)
                     {
+                        a.Naziv = odabrana.Naziv;
                         a.Datum_Pocetka = odabrana.Datum_Pocetka;
                         a.Datum_Zavrsetka = odabrana.Datum_Zavrsetka;
                         a.Popust = odabrana.Popust;

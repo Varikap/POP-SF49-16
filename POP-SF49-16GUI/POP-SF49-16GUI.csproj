@@ -60,6 +60,9 @@
     <Compile Include="GUI\AkcijeWindow.xaml.cs">
       <DependentUpon>AkcijeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DodajNaAkcijuWindow.xaml.cs">
+      <DependentUpon>DodajNaAkcijuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\KorisnikWindow.xaml.cs">
       <DependentUpon>KorisnikWindow.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\AkcijeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodajNaAkcijuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,9 +144,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Add.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\couch.png" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Akcije.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

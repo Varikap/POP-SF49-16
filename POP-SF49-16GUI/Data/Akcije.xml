@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
+    <Naziv>Bozicni pop</Naziv>
     <Id>1</Id>
-    <Datum_Pocetka>2017-10-09T00:00:00</Datum_Pocetka>
-    <Datum_Zavrsetka>2017-10-16T00:00:00</Datum_Zavrsetka>
-    <Popust>30</Popust>
-  </Akcija>
-  <Akcija>
-    <Id>2</Id>
-    <Datum_Pocetka>2017-10-09T00:00:00</Datum_Pocetka>
-    <Datum_Zavrsetka>2017-10-16T00:00:00</Datum_Zavrsetka>
-    <Popust>25</Popust>
-  </Akcija>
-  <Akcija>
-    <Id>4</Id>
-    <Datum_Pocetka>2017-12-03T18:59:10.3387979+01:00</Datum_Pocetka>
-    <Datum_Zavrsetka>2017-12-07T00:00:00</Datum_Zavrsetka>
-    <Popust>1223111</Popust>
-  </Akcija>
-  <Akcija>
-    <Id>4</Id>
-    <Datum_Pocetka>2017-12-03T18:59:10.3387979+01:00</Datum_Pocetka>
-    <Datum_Zavrsetka>2017-12-07T00:00:00</Datum_Zavrsetka>
-    <Popust>12231</Popust>
+    <Datum_Pocetka>2018-01-09T17:16:17.1270077+01:00</Datum_Pocetka>
+    <Datum_Zavrsetka>2018-01-31T00:00:00</Datum_Zavrsetka>
+    <Popust>420</Popust>
   </Akcija>
 </ArrayOfAkcija>

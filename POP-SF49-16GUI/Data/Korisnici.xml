@@ -3,9 +3,9 @@
   <Korisnik>
     <Obrisan>false</Obrisan>
     <Tip_Korisnika>admin</Tip_Korisnika>
-    <Password>fd1286353570c5703799ba76999323b7c7447b06</Password>
+    <Password>7fd316f97fb689e769b33acc2bb1fa172f28f2a8</Password>
     <Username>ni</Username>
-    <Ime>nikola</Ime>
+    <Ime>nikolas</Ime>
     <Prezime>nikolic</Prezime>
   </Korisnik>
   <Korisnik>
@@ -17,7 +17,7 @@
     <Prezime>Popadic</Prezime>
   </Korisnik>
   <Korisnik>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Tip_Korisnika>korisnik</Tip_Korisnika>
     <Password>86f7e437faa5a7fce15d1ddcb9eaeaea377667b8</Password>
     <Username>a</Username>
@@ -27,9 +27,17 @@
   <Korisnik>
     <Obrisan>false</Obrisan>
     <Tip_Korisnika>korisnik</Tip_Korisnika>
-    <Password>e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98</Password>
+    <Password>1e9ec29525eb13ee02ab3ba80c9f812133ad717c</Password>
     <Username>b</Username>
-    <Ime>Miso</Ime>
-    <Prezime>Petricevic</Prezime>
+    <Ime>Misoo</Ime>
+    <Prezime>Petricevicc</Prezime>
+  </Korisnik>
+  <Korisnik>
+    <Obrisan>false</Obrisan>
+    <Tip_Korisnika>admin</Tip_Korisnika>
+    <Password>1257ee4cb238affd46ef15d06714525c2c7c9018</Password>
+    <Username>fds</Username>
+    <Ime>sed</Ime>
+    <Prezime>sdf</Prezime>
   </Korisnik>
 </ArrayOfKorisnik>

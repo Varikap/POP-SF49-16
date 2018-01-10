@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Kael\POP-SF49-16\POP-SF49-16GUI\App.xaml
-6-612924625
+7-1000622558
 
-231344620956
+241648396192
 131569487696
-GUI\AdminWindow.xaml;GUI\AkcijeWindow.xaml;GUI\KorisnikWindow.xaml;GUI\NamestajWindow.xaml;GUI\TipNamestajaWindow.xaml;LoginWindow.xaml;
+GUI\AdminWindow.xaml;GUI\AkcijeWindow.xaml;GUI\DodajNaAkcijuWindow.xaml;GUI\KorisnikWindow.xaml;GUI\NamestajWindow.xaml;GUI\TipNamestajaWindow.xaml;LoginWindow.xaml;
 
 False
 

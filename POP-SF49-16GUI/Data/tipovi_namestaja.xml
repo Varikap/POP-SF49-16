@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
-    <Id>1</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>krevet</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>1</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>2</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>plakar</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>2</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>3</Id>
+    <Obrisan>true</Obrisan>
     <Naziv>fotelja</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>3</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>4</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Lampa</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>4</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>5</Id>
-    <Naziv>astal</Naziv>
     <Obrisan>false</Obrisan>
+    <Naziv>astal</Naziv>
+    <Id>5</Id>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
+    <Naziv>novii2</Naziv>
+    <Id>6</Id>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

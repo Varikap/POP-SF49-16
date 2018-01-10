@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF49_16GUI.GUI"
         mc:Ignorable="d"
-        Title="Akcijes" Height="200" Width="320">
+        Title="Akcijes" Height="250" Width="320">
     <Border Padding="7">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -13,12 +13,14 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel>
+                <Label Content="Naziv" Margin="0 4" />
                 <Label Content="Datum Pocetka" Margin="0 4"/>
                 <Label Content="Datum zavrsetka" Margin="0 4"/>
                 <Label Content="Popust" Margin="0 4"/>
                 <Button Name="btnBack" Click="btnBack_Click" Height="19" Margin="20" Content="Back" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </StackPanel>
             <StackPanel Grid.Column="1">
+                <TextBox Padding="1" Margin="0 4" Name="tbNaziv" Height="26" Text="{Binding Path=Naziv}"></TextBox>
                 <DatePicker Name="dpPocetak" SelectedDate="{Binding Path=Datum_Pocetka}" Margin="0 4" Height="27" />
                 <DatePicker Name="dpKraj" SelectedDate="{Binding Path=Datum_Zavrsetka}" Margin="0 4" Height="27" />
                 <TextBox Padding="1" Margin="0 4" Name="tbPopust" Height="26" Text="{Binding Path=Popust}"></TextBox>
