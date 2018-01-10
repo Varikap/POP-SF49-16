@@ -40,27 +40,46 @@ namespace POP_SF49_16GUI.GUI
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
-
-            if (kbroj == 1)
+            var msg_prazno = false;
+            string poruka = " Niste uneli polje: ";
+            if(tbCena.Text.Equals(""))
             {
-                usluga.Id = listaUsluga.Count + 1;
-                listaUsluga.Add(usluga);
-                GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
-                this.Close();
+                msg_prazno = true;
+                poruka += "Cena";
             }
-            else if (kbroj == 2)
+            if (tbNaziv.Text.Equals(""))
             {
-                foreach (DodatnaUsluga d in listaUsluga)
+                msg_prazno = true;
+                poruka += "Naziv";
+            }
+            if (msg_prazno == true)
+            {
+                MessageBox.Show(poruka);
+            }
+            else
+            {
+                if (kbroj == 1)
                 {
-                    if (d.Id == usluga.Id)
-                    {
-                        d.Naziv = usluga.Naziv;
-                        d.Cena = usluga.Cena;
-                        GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
-                        this.Close();
-                    }
+                    usluga.Id = listaUsluga.Count + 1;
+                    listaUsluga.Add(usluga);
+                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                    
                 }
+                else if (kbroj == 2)
+                {
+                    foreach (DodatnaUsluga d in listaUsluga)
+                    {
+                        if (d.Id == usluga.Id)
+                        {
+                            d.Naziv = usluga.Naziv;
+                            d.Cena = usluga.Cena;
+                            GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                            
+                        }
+                    }
+                } 
             }
+            this.Close();
         }
     }
 }

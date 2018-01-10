@@ -74,33 +74,37 @@ namespace POP_SF49_16GUI.GUI
             {
                 MessageBox.Show(poruka);
             }
-            if (msg_pogresno == true)
+            if (msg_pogresno == true || msg_prazno == false)
             {
-                MessageBox.Show(pogresno);
+                MessageBox.Show(pogresno,poruka);
             }
-            if (pbroj == 1)
-            { 
-                odabrana.Id = lista.Count + 1;
-                lista.Add(odabrana);
-                GenericSerialize.Serialize("Akcije.xml", lista);
-                this.Close();
-            }
-            else if(pbroj==2)
+            else if (msg_pogresno == false && msg_pogresno == false)
             {
-                foreach (Akcija a in lista)
+                if (pbroj == 1)
                 {
-                    if (a.Id == odabrana.Id)
+                    odabrana.Id = lista.Count + 1;
+                    lista.Add(odabrana);
+                    GenericSerialize.Serialize("Akcije.xml", lista);
+                    this.Close();
+                }
+                else if (pbroj == 2)
+                {
+                    foreach (Akcija a in lista)
                     {
-                        a.Naziv = odabrana.Naziv;
-                        a.Datum_Pocetka = odabrana.Datum_Pocetka;
-                        a.Datum_Zavrsetka = odabrana.Datum_Zavrsetka;
-                        a.Popust = odabrana.Popust;
-                        GenericSerialize.Serialize("Akcije.xml", lista);
-                        break;
+                        if (a.Id == odabrana.Id)
+                        {
+                            a.Naziv = odabrana.Naziv;
+                            a.Datum_Pocetka = odabrana.Datum_Pocetka;
+                            a.Datum_Zavrsetka = odabrana.Datum_Zavrsetka;
+                            a.Popust = odabrana.Popust;
+                            GenericSerialize.Serialize("Akcije.xml", lista);
+                            this.Close();
+                            break;
+                        }
                     }
                 }
             }
-            this.Close();
+           
         }
     }
 }

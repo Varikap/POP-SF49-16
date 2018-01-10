@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace POP_SF49_16GUI.GUI
 {
-    /// <summary>
-    /// Interaction logic for DodajNaAkcijuWindow.xaml
-    /// </summary>
     public partial class DodajNaAkcijuWindow : Window
     {
         string operacija;
@@ -46,30 +43,57 @@ namespace POP_SF49_16GUI.GUI
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
             var listaNam = RadSaPodacima.Instance.Namestaj;
-            if (operacija.Equals("dodavanje"))
+            var msg_prazno = false;
+            string poruka = " Niste odabrali polje: ";
+            if (cbAkcija.SelectedItem == null)
             {
-                foreach (Namestaj n in listaNam)
-                {
-                    if (n == cbNamestaj.SelectedItem)
-                    {
-                        Akcija kcija = (Akcija)cbAkcija.SelectedItem;
-                        n.AkcijskaCena = kcija;
-                        break;
-                    }
-                }
-                GenericSerialize.Serialize("listaNam.xml", listaNam);
+                msg_prazno = true;
+                poruka += " Akcija";
+
             }
-            else if (operacija.Equals("uklanjanje"))
+            else if (cbNamestaj.SelectedItem == null)
             {
-                foreach (Namestaj n in listaNam)
+                msg_prazno = true;
+                poruka += " namestaj";
+
+            }
+            else if (cbUklonjenNamestaj.SelectedItem == null)
+            {
+                msg_prazno = true;
+                poruka += "Namestaj";
+
+            }
+            if (msg_prazno == true)
+            {
+                MessageBox.Show(poruka);
+            }
+            else
+            {
+                if (operacija.Equals("dodavanje"))
                 {
-                    if (n == cbUklonjenNamestaj.SelectedItem)
+                    foreach (Namestaj n in listaNam)
                     {
-                        n.AkcijskaCena = null;
-                        break;
+                        if (n == cbNamestaj.SelectedItem)
+                        {
+                            Akcija kcija = (Akcija)cbAkcija.SelectedItem;
+                            n.AkcijskaCena = kcija;
+                            break;
+                        }
                     }
+                    GenericSerialize.Serialize("listaNam.xml", listaNam);
                 }
-                GenericSerialize.Serialize("listaNam.xml", listaNam);
+                else if (operacija.Equals("uklanjanje"))
+                {
+                    foreach (Namestaj n in listaNam)
+                    {
+                        if (n == cbUklonjenNamestaj.SelectedItem)
+                        {
+                            n.AkcijskaCena = null;
+                            break;
+                        }
+                    }
+                    GenericSerialize.Serialize("listaNam.xml", listaNam);
+                } 
             }
             this.Close();
         }

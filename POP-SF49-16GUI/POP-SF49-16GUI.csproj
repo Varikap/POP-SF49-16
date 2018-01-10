@@ -69,6 +69,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Baza\AkcijaBaza.cs" />
+    <Compile Include="Baza\DodatnaUslugaBaza.cs" />
+    <Compile Include="Baza\KorisnikBaza.cs" />
+    <Compile Include="Baza\NamestajBaza.cs" />
+    <Compile Include="Baza\ProdajaNamestajaBaza.cs" />
+    <Compile Include="Baza\TipNamestajaBaza.cs" />
     <Compile Include="GUI\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +95,9 @@
     </Compile>
     <Compile Include="GUI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -119,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\TipNamestajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

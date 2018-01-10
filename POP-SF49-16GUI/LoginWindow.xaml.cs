@@ -24,6 +24,7 @@ namespace POP_SF49_16GUI
         public LoginWindow()
         {
             InitializeComponent();
+            Baza.KorisnikBaza.popunjavanjeKorisnika();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
@@ -36,7 +37,7 @@ namespace POP_SF49_16GUI
                 {
                     if (tbUserName.Text.Equals(korisnik.Username))
                     {
-                        string password = Hash(tbPassword.Password);
+                        string password =(tbPassword.Password);
                         if (password.Equals(korisnik.Password))
                         {
                             br += 1;
@@ -70,11 +71,6 @@ namespace POP_SF49_16GUI
                 MessageBox.Show(ex.Message);
             }
 
-        }
-        private string Hash(string passw)
-        {
-            var hash = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(passw));
-            return string.Join("", hash.Select(b => b.ToString("x2")).ToArray());
         }
     }
 }
