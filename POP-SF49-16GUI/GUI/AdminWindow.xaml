@@ -31,6 +31,11 @@
                         <Image Source="/Resources/couch.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Name="dodatneUslge" Header="_DodatneUsluge" InputGestureText="Ctrl+D" Click="dodatneUslge_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/couch.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <Separator/>
         </Menu>

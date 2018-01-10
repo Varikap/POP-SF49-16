@@ -22,9 +22,12 @@ namespace POP_SF49_16GUI.GUI
     public partial class DodatnaUslugaWindow : Window
     {
         private DodatnaUsluga usluga;
-        public DodatnaUslugaWindow()
+        int kbroj = 0;
+        public DodatnaUslugaWindow(int broj, DodatnaUsluga objekat)
         {
             InitializeComponent();
+            usluga = objekat;
+            kbroj = broj;
             tbCena.DataContext = usluga;
             tbNaziv.DataContext = usluga;
         }
@@ -36,10 +39,28 @@ namespace POP_SF49_16GUI.GUI
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            //var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
-            //usluga.Id = listaUsluga.Count + 1;
-            listaUsluga.Add(usluga);
-            GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+            var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
+
+            if (kbroj == 1)
+            {
+                usluga.Id = listaUsluga.Count + 1;
+                listaUsluga.Add(usluga);
+                GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                this.Close();
+            }
+            else if (kbroj == 2)
+            {
+                foreach (DodatnaUsluga d in listaUsluga)
+                {
+                    if (d.Id == usluga.Id)
+                    {
+                        d.Naziv = usluga.Naziv;
+                        d.Cena = usluga.Cena;
+                        GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                        this.Close();
+                    }
+                }
+            }
         }
     }
 }

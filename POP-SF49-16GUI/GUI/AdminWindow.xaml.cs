@@ -40,11 +40,13 @@ namespace POP_SF49_16GUI.GUI
 
         public Object Objekat { get; set; }
 
+        public DodatnaUsluga IzabranaUsluga;
+
         public string operacija = "";
         public AdminWindow()
         {
             InitializeComponent();
-            proveraAkcija();
+            //proveraAkcija();
             dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -93,6 +95,15 @@ namespace POP_SF49_16GUI.GUI
                         Datum_Zavrsetka = DateTime.Now
                     };
                     var window = new AkcijeWindow(1, zaDodati);
+                    window.ShowDialog();
+                }
+                else if (operacija.Equals("dodatneUsluge"))
+                {
+                    var zaDodati = new DodatnaUsluga
+                    {
+                        Naziv = ""
+                    };
+                    var window = new DodatnaUslugaWindow(1, zaDodati);
                     window.ShowDialog();
                 }
                 view.Refresh();
@@ -158,6 +169,20 @@ namespace POP_SF49_16GUI.GUI
                     Akcija prosledjenaAkcija = (Akcija)Objekat;
                     Akcija zaIzmenu = (Akcija)prosledjenaAkcija.Clone();
                     var window = new AkcijeWindow(2, zaIzmenu);
+                    window.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(" Morate izabrati objekat za izmenu!! ");
+                }
+            }
+            else if (operacija.Equals("dodatneUsluge"))
+            {
+                if (dgPrikaz.SelectedItem != null)
+                {
+                    DodatnaUsluga prosledjenaUsluga = (DodatnaUsluga)Objekat;
+                    DodatnaUsluga zaIzmenu = (DodatnaUsluga)prosledjenaUsluga.Clone();
+                    var window = new DodatnaUslugaWindow(2, zaIzmenu);
                     window.ShowDialog();
                 }
             }
@@ -312,6 +337,39 @@ namespace POP_SF49_16GUI.GUI
                     }
                 }
 
+                else if (operacija.Equals("dodatneUsluge"))
+                {
+                    var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
+                    var ob = (DodatnaUsluga)Objekat;
+                    if (ob == null)
+                    {
+                        MessageBox.Show(" Morate izabrati objekat za brisanje!! ");
+                    }
+                    else if(ob != null)
+                    {
+                        foreach (DodatnaUsluga d in listaUsluga)
+                        {
+                            if (d.Id == ob.Id)
+                            {
+                                if (d.Obrisan == false)
+                                {
+                                    d.Obrisan = true;
+                                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                                    view.Refresh();
+                                    break;
+                                }
+                                else if (d.Obrisan == true)
+                                {
+                                    d.Obrisan = false;
+                                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
             }
         }
 
@@ -375,6 +433,21 @@ namespace POP_SF49_16GUI.GUI
             dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private void dodatneUslge_Click(object sender, RoutedEventArgs e)
+        {
+            operacija = "dodatneUsluge";
+            btnDodajAkciju.Visibility = Visibility.Hidden;
+            Objekat = null;
+            Objekat = IzabranaUsluga;
+            dgPrikaz.ItemsSource = null;
+            dgPrikaz.IsSynchronizedWithCurrentItem = true;
+            dgPrikaz.DataContext = this;
+            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.DodatneUsluge);
+            view.Filter = PrikazNeobrisaneDodatneUsluge;
+            dgPrikaz.ItemsSource = view;
+            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
         private bool PrikazNeobrisanogNamestaja(object obj)
         {
             return ((Namestaj)obj).NaStanju == true;
@@ -382,6 +455,11 @@ namespace POP_SF49_16GUI.GUI
         private bool PrikazNeobrisanogTipaNamestaja(object obj)
         {
             return ((TipNamestaja)obj).Obrisan == false;
+        }
+
+        private bool PrikazNeobrisaneDodatneUsluge(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
         }
 
         private void prikaz3(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -420,5 +498,7 @@ namespace POP_SF49_16GUI.GUI
             GenericSerialize.Serialize("listaNam.xml", listaNamestaja);
             GenericSerialize.Serialize("Akcije.xml", listaAkcija);
         }
+
+       
     }
 }

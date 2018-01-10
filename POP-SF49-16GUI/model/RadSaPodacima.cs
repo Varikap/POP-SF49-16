@@ -24,7 +24,7 @@ namespace POP_SF49_16GUI.model
             Namestaj = GenericSerialize.Deserialize<Namestaj>("listaNam.xml");
             Korisnici = GenericSerialize.Deserialize<Korisnik>("Korisnici.xml");
             Akcije = GenericSerialize.Deserialize<Akcija>("Akcije.xml");
-           // DodatneUsluge = GenericSerialize.Deserialize<DodatnaUsluga>("DodatneUsluge.xml");
+            DodatneUsluge = GenericSerialize.Deserialize<DodatnaUsluga>("DodatneUsluge.xml");
         }
 
     }

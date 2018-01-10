@@ -71,6 +71,7 @@ namespace POP_SF49_16GUI.GUI
                 }
                 GenericSerialize.Serialize("listaNam.xml", listaNam);
             }
+            this.Close();
         }
 
         private void btnDodavanje_Click(object sender, RoutedEventArgs e)
