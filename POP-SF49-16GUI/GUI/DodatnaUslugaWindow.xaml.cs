@@ -39,7 +39,7 @@ namespace POP_SF49_16GUI.GUI
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
+            var listaUsluga = RadSaPodacima.Instance.DodatnaUsluga;
             var msg_prazno = false;
             string poruka = " Niste uneli polje: ";
             if(tbCena.Text.Equals(""))
@@ -61,8 +61,11 @@ namespace POP_SF49_16GUI.GUI
                 if (kbroj == 1)
                 {
                     usluga.Id = listaUsluga.Count + 1;
-                    listaUsluga.Add(usluga);
-                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                    usluga.Obrisan = false;
+
+                    Baza.DodatnaUslugaBaza.DodatnaUslugaDodaj(usluga);
+                    RadSaPodacima.Instance.DodatnaUsluga.Add(usluga);
+                    this.Close();
                     
                 }
                 else if (kbroj == 2)
@@ -73,10 +76,12 @@ namespace POP_SF49_16GUI.GUI
                         {
                             d.Naziv = usluga.Naziv;
                             d.Cena = usluga.Cena;
-                            GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
+                           
                             
                         }
                     }
+                    Baza.DodatnaUslugaBaza.DodatnaUslugaIzmeni(usluga);
+                    this.Close();
                 } 
             }
             this.Close();

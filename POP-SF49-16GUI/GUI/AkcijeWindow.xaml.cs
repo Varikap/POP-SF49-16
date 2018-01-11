@@ -83,8 +83,9 @@ namespace POP_SF49_16GUI.GUI
                 if (pbroj == 1)
                 {
                     odabrana.Id = lista.Count + 1;
-                    lista.Add(odabrana);
-                    GenericSerialize.Serialize("Akcije.xml", lista);
+
+                    Baza.AkcijaBaza.AkcijaDodaj(odabrana);
+                    RadSaPodacima.Instance.Akcije.Add(odabrana);
                     this.Close();
                 }
                 else if (pbroj == 2)
@@ -97,11 +98,11 @@ namespace POP_SF49_16GUI.GUI
                             a.Datum_Pocetka = odabrana.Datum_Pocetka;
                             a.Datum_Zavrsetka = odabrana.Datum_Zavrsetka;
                             a.Popust = odabrana.Popust;
-                            GenericSerialize.Serialize("Akcije.xml", lista);
-                            this.Close();
                             break;
                         }
                     }
+                    Baza.AkcijaBaza.AkcijaIzmeni(odabrana);
+                    this.Close();
                 }
             }
            

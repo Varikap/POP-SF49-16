@@ -14,7 +14,7 @@ namespace POP_SF49_16GUI.model
         private double cena;
         private int kolicina;
         private int tip_namestaja;
-        private bool naStanju = true;
+        private bool naStanju;
         private Akcija akcijskaCena;
         private TipNamestaja tipNamestaja;
         private int akcijskaCenaId;
@@ -104,7 +104,14 @@ namespace POP_SF49_16GUI.model
             set
             {
                 tipNamestaja = value;
-                tip_namestaja = tipNamestaja.Id;
+                if (tipNamestaja == null)
+                {
+                    tip_namestaja = 0;
+                }
+                else
+                {
+                    tip_namestaja = tipNamestaja.Id;
+                }
                 OnPropertyChanged("TipNamestaja");
             }
         }

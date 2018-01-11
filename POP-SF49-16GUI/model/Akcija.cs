@@ -14,6 +14,18 @@ namespace POP_SF49_16GUI.model
         private DateTime datum_pocetka;
         private int popust;
         private DateTime datum_zavrsetka;
+        private bool obrisan;
+
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set
+            {
+                obrisan = value;
+                OnPropertyChanged("Obrisan");
+            }
+        }
+
 
         public string Naziv
         {
@@ -93,7 +105,8 @@ namespace POP_SF49_16GUI.model
                 Datum_Pocetka = datum_pocetka,
                 Datum_Zavrsetka = datum_zavrsetka,
                 Popust = popust,
-                Naziv = naziv
+                Naziv = naziv,
+                Obrisan = obrisan
             };
         }
     }

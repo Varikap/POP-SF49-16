@@ -77,6 +77,8 @@ namespace POP_SF49_16GUI.GUI
                         {
                             Akcija kcija = (Akcija)cbAkcija.SelectedItem;
                             n.AkcijskaCena = kcija;
+                            Baza.NamestajBaza.NamestajIzmeni(n);
+                            this.Close();
                             break;
                         }
                     }
@@ -89,6 +91,8 @@ namespace POP_SF49_16GUI.GUI
                         if (n == cbUklonjenNamestaj.SelectedItem)
                         {
                             n.AkcijskaCena = null;
+                            Baza.NamestajBaza.NamestajIzmeni(n);
+                            this.Close();
                             break;
                         }
                     }

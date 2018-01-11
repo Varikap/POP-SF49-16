@@ -25,6 +25,12 @@ namespace POP_SF49_16GUI
         {
             InitializeComponent();
             Baza.KorisnikBaza.popunjavanjeKorisnika();
+            Baza.DodatnaUslugaBaza.popunjavanjeDodatneUsluge();
+            Baza.TipNamestajaBaza.popunjavanjeTipaNamestaja();
+            Baza.AkcijaBaza.popunjavanjeAkcija();
+            Baza.NamestajBaza.popunjavanjeNamestaja();
+            Baza.ProdajaNamestajaBaza.popunjavanjeProdaja();
+
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)

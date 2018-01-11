@@ -15,46 +15,102 @@ namespace POP_SF49_16GUI.Baza
         {
             using (SqlConnection connection = new SqlConnection(RadSaPodacima.Instance.ConnectionStr))
             {
-                // otvara konekciju i pravi dataset objekat koji je kao kes memorija ucitane baze(zbog lakseg manipulisanja podacima)
+                
                 connection.Open();
                 DataSet dataset = new DataSet();
 
-                // pravim komandu koji cu koristiti
+                
                 SqlCommand komanda = connection.CreateCommand();
-                komanda.CommandText = @"SELECT * FROM Korisnici";
+                komanda.CommandText = @"SELECT * FROM Korisnik";
 
-                // pravim adapter objekat koji sluzi da popunim dataset sa komandom(iznad) 
+               
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = komanda;
-                adapter.Fill(dataset, "Korisnici");
+                adapter.Fill(dataset, "Korisnik");
 
-                foreach (DataRow red in dataset.Tables["Korisnici"].Rows)
+                foreach (DataRow red in dataset.Tables["Korisnik"].Rows)
                 {
                     Korisnik k = new Korisnik();
                     k.Ime = (string)red["Ime"];
                     k.Prezime = (string)red["Prezime"];
-                    k.Username = (string)red["KorisnickoIme"];
-                    k.Password = (string)red["Lozinka"];
+                    k.Username = (string)red["Username"];
+                    k.Password = (string)red["Password"];
                     k.Obrisan = (bool)red["Obrisan"];
-                    bool Tip = (bool)red["TipKorisnika"];
-                    k.Tip_Korisnika = vratiTipKorisnika(Tip);
+                    k.Tip_Korisnika = (string)red["TipKorisnika"];
 
                     RadSaPodacima.Instance.Korisnici.Add(k);
                 }
             }
         }
 
-        public static string vratiTipKorisnika(bool tip)
+        public static void korisnikDodaj(Korisnik k)
         {
-            if (tip == false)
+            using (SqlConnection conn = new SqlConnection(RadSaPodacima.Instance.ConnectionStr))
             {
-                return "admin";
-            }
-            else
-            {
-                return "korisnik";
-            }
+                conn.Open();
 
+                SqlCommand command = conn.CreateCommand();
+                command.CommandText = @"INSERT INTO Korisnik (Ime, Prezime, Username, Password, Obrisan, TipKorisnika) 
+                                        VALUES (@Ime, @Prezime, @Username, @Password, @Obrisan, @TipKorisnika)";
+                command.Parameters.Add(new SqlParameter("@Ime", k.Ime));
+                command.Parameters.Add(new SqlParameter("@Prezime", k.Prezime));
+                command.Parameters.Add(new SqlParameter("@Username", k.Username));
+                command.Parameters.Add(new SqlParameter("@Password", k.Password));
+                command.Parameters.Add(new SqlParameter("@Obrisan", k.Obrisan));
+                command.Parameters.Add(new SqlParameter("@TipKorisnika", k.Tip_Korisnika));
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void korisnikIzmeni(Korisnik k)
+        {
+            using (SqlConnection connection = new SqlConnection(RadSaPodacima.Instance.ConnectionStr))
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = @"UPDATE Korisnik 
+                                        SET Ime=@Ime, Prezime=@Prezime, Username=@Username, Password=@Password, 
+                                            Obrisan=@Obrisan, TipKorisnika=@TipKorisnika WHERE Username=@Username";
+                command.Parameters.Add(new SqlParameter("@Ime", k.Ime));
+                command.Parameters.Add(new SqlParameter("@Prezime", k.Prezime));
+                command.Parameters.Add(new SqlParameter("@Username", k.Username));
+                command.Parameters.Add(new SqlParameter("@Password", k.Password));
+                command.Parameters.Add(new SqlParameter("@Obrisan", k.Obrisan));
+                command.Parameters.Add(new SqlParameter("@TipKorisnika", k.Tip_Korisnika));
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void korisnikIzbrisi(Korisnik k)
+        {
+            using (SqlConnection connection = new SqlConnection(RadSaPodacima.Instance.ConnectionStr))
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = @"UPDATE Korisnik SET Obrisan=@Obrisan WHERE Username=@Username";
+
+                command.Parameters.Add(new SqlParameter("@Username", k.Username));
+                command.Parameters.Add(new SqlParameter("@Obrisan", 1));
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void ClearTable()
+        {
+            using (SqlConnection conn = new SqlConnection(RadSaPodacima.Instance.ConnectionStr))
+            {
+                conn.Open();
+
+                SqlCommand command = conn.CreateCommand();
+                command.CommandText = @"DELETE FROM Korisnik";
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -114,9 +114,8 @@ namespace POP_SF49_16GUI.GUI
                 if (pbroj == 1)
                 {
                     odabrani.Id = lista.Count + 1;
-
-                    lista.Add(odabrani);
-                    GenericSerialize.Serialize("listaNam.xml", lista);
+                    Baza.NamestajBaza.NamestajDodaj(odabrani);
+                    RadSaPodacima.Instance.Namestaj.Add(odabrani);
                     this.Close();
 
                 }
@@ -135,7 +134,7 @@ namespace POP_SF49_16GUI.GUI
 
                         }
                     }
-                    GenericSerialize.Serialize("listaNam.xml", lista);
+                    Baza.NamestajBaza.NamestajIzmeni(odabrani);
                     this.Close();
 
                 }

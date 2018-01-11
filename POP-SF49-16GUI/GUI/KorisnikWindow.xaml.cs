@@ -106,9 +106,9 @@ namespace POP_SF49_16GUI.GUI
             {
                 if (kbroj == 1)
                 {
-                    izabrani.Password = Hash(tbPassword.Text);
-                    lista.Add(izabrani);
-                    GenericSerialize.Serialize("Korisnici.xml", lista);
+                    izabrani.Password = tbPassword.Text;
+                    Baza.KorisnikBaza.korisnikDodaj(izabrani);
+                    RadSaPodacima.Instance.Korisnici.Add(izabrani);
                     this.Close();
 
                 }
@@ -121,25 +121,20 @@ namespace POP_SF49_16GUI.GUI
                             n.Ime = izabrani.Ime;
                             n.Prezime = izabrani.Prezime;
                             n.Username = izabrani.Username;
-                            n.Password = Hash(tbPassword.Text);
+                            n.Password = tbPassword.Text;
                             n.Tip_Korisnika = izabrani.Tip_Korisnika;
-
+                            Baza.KorisnikBaza.korisnikIzmeni(n);
 
 
                         }
                     }
-                    GenericSerialize.Serialize("Korisnici.xml", lista);
+                   
                     this.Close();
 
                 }
 
             }
 
-        }
-        private string Hash(string passw)
-        {
-            var hash = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(passw));
-            return string.Join("", hash.Select(b => b.ToString("x2")).ToArray());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

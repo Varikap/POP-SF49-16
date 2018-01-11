@@ -66,6 +66,9 @@ namespace POP_SF49_16GUI.GUI
                     };
                     var window = new KorisnikWindow(1, zaDodati);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.Korisnici.Clear();
+                    Baza.KorisnikBaza.popunjavanjeKorisnika();
+                    view.Refresh();
                 }
                 else if (operacija.Equals("namestaj"))
                 {
@@ -76,6 +79,9 @@ namespace POP_SF49_16GUI.GUI
                     };
                     var window = new NamestajWindow(1, zaDodati);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.Namestaj.Clear();
+                    Baza.NamestajBaza.popunjavanjeNamestaja();
+                    view.Refresh();
                 }
                 else if (operacija.Equals("tipNamestaja"))
                 {
@@ -85,6 +91,9 @@ namespace POP_SF49_16GUI.GUI
                     };
                     var window = new TipNamestajaWindow(1, zaDodati);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.TipoviNamestaja.Clear();
+                    Baza.TipNamestajaBaza.popunjavanjeTipaNamestaja();
+                    view.Refresh();
                 }
                 else if(operacija.Equals("akcija"))
                 {
@@ -96,6 +105,9 @@ namespace POP_SF49_16GUI.GUI
                     };
                     var window = new AkcijeWindow(1, zaDodati);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.Akcije.Clear();
+                    Baza.AkcijaBaza.popunjavanjeAkcija();
+                    view.Refresh();
                 }
                 else if (operacija.Equals("dodatneUsluge"))
                 {
@@ -105,6 +117,9 @@ namespace POP_SF49_16GUI.GUI
                     };
                     var window = new DodatnaUslugaWindow(1, zaDodati);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.DodatnaUsluga.Clear();
+                    Baza.DodatnaUslugaBaza.popunjavanjeDodatneUsluge();
+                    view.Refresh();
                 }
                 view.Refresh();
             }
@@ -125,6 +140,9 @@ namespace POP_SF49_16GUI.GUI
                     var zaIzmenu = (Korisnik)Korisnik.Clone();
                     var window = new KorisnikWindow(2, zaIzmenu);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.Korisnici.Clear();
+                    Baza.KorisnikBaza.popunjavanjeKorisnika();
+                    view.Refresh();
 
                 }
                 else
@@ -140,7 +158,9 @@ namespace POP_SF49_16GUI.GUI
                     var prosledjenNamestaj = (Namestaj)Namestaj.Clone();
                     var window = new NamestajWindow(2, prosledjenNamestaj);
                     window.ShowDialog();
-
+                    RadSaPodacima.Instance.Namestaj.Clear();
+                    Baza.NamestajBaza.popunjavanjeNamestaja();
+                    view.Refresh();
                 }
                 else
                 {
@@ -155,7 +175,9 @@ namespace POP_SF49_16GUI.GUI
                     TipNamestaja zaIzmenu = (TipNamestaja)prosledjenTip.Clone();
                     var window = new TipNamestajaWindow(2, zaIzmenu);
                     window.ShowDialog();
-
+                    RadSaPodacima.Instance.TipoviNamestaja.Clear();
+                    Baza.TipNamestajaBaza.popunjavanjeTipaNamestaja();
+                    view.Refresh();
                 }
                 else
                 {
@@ -170,6 +192,9 @@ namespace POP_SF49_16GUI.GUI
                     Akcija zaIzmenu = (Akcija)prosledjenaAkcija.Clone();
                     var window = new AkcijeWindow(2, zaIzmenu);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.Akcije.Clear();
+                    Baza.AkcijaBaza.popunjavanjeAkcija();
+                    view.Refresh();
                 }
                 else
                 {
@@ -184,6 +209,9 @@ namespace POP_SF49_16GUI.GUI
                     DodatnaUsluga zaIzmenu = (DodatnaUsluga)prosledjenaUsluga.Clone();
                     var window = new DodatnaUslugaWindow(2, zaIzmenu);
                     window.ShowDialog();
+                    RadSaPodacima.Instance.DodatnaUsluga.Clear();
+                    Baza.DodatnaUslugaBaza.popunjavanjeDodatneUsluge();
+                    view.Refresh();
                 }
             }
         }
@@ -207,27 +235,11 @@ namespace POP_SF49_16GUI.GUI
                     }
                     if (ob != null)
                     {
-                        foreach (Korisnik n in lista_korisnika)
-                        {
-                            if (n.Username == ob.Username)
-                            {
-                                if (n.Obrisan == false)
-                                {
-                                    n.Obrisan = true;
-                                    GenericSerialize.Serialize("Korisnici.xml", lista_korisnika);
-
-                                    break;
-                                }
-                                else if (n.Obrisan == true)
-                                {
-                                    n.Obrisan = false;
-                                    GenericSerialize.Serialize("Korisnici.xml", lista_korisnika);
-
-                                    break;
-                                }
-                            }
-                        }
-
+                        Baza.KorisnikBaza.korisnikIzbrisi(ob);
+                        RadSaPodacima.Instance.Korisnici.Remove(ob);
+                        RadSaPodacima.Instance.Korisnici.Clear();
+                        Baza.KorisnikBaza.popunjavanjeKorisnika();
+                        view.Refresh();
                     }
                 }
                 else if (operacija.Equals("namestaj"))
@@ -242,26 +254,11 @@ namespace POP_SF49_16GUI.GUI
                     }
                     else if (ob != null)
                     {
-                        foreach (Namestaj n in lista_namestaja)
-                        {
-                            if (n.Id == ob.Id)
-                            {
-                                if (n.NaStanju == false)
-                                {
-                                    n.NaStanju = true;
-                                    GenericSerialize.Serialize("listaNam.xml", lista_namestaja);
-
-                                    break;
-                                }
-                                else if (n.NaStanju == true)
-                                {
-                                    n.NaStanju = false;
-                                    GenericSerialize.Serialize("listaNam.xml", lista_namestaja);
-                                    view.Refresh();
-                                    break;
-                                }
-                            }
-                        }
+                        Baza.NamestajBaza.NamestajIzbrisi(ob);
+                        RadSaPodacima.Instance.Namestaj.Remove(ob);
+                        RadSaPodacima.Instance.Namestaj.Clear();
+                        Baza.NamestajBaza.popunjavanjeNamestaja();
+                        view.Refresh();
 
                     }
                 }
@@ -275,20 +272,11 @@ namespace POP_SF49_16GUI.GUI
                     }
                     else if (ob != null)
                     {
-                        foreach (Akcija n in lista_akcija)
-                        {
-                            if (n.Id == ob.Id)
-                            {
-                                if (n.Datum_Zavrsetka < System.DateTime.Now)
-                                {
-                                    lista_akcija.Remove(n);
-                                    GenericSerialize.Serialize("Akcije.xml", lista_akcija);
-
-                                    break;
-                                }
-
-                            }
-                        }
+                        Baza.AkcijaBaza.AkcijaIzbrisi(ob);
+                        RadSaPodacima.Instance.Akcije.Remove(ob);
+                        RadSaPodacima.Instance.Akcije.Clear();
+                        Baza.AkcijaBaza.popunjavanjeAkcija();
+                        view.Refresh();
 
                     }
                 }
@@ -303,43 +291,21 @@ namespace POP_SF49_16GUI.GUI
                     }
                     else if (ob != null)
                     {
-                        foreach (TipNamestaja n in lista_tipova)
-                        {
-                            if (n.Id == ob.Id)
-                            {
-                                if (n.Obrisan == false)
-                                {
-                                    n.Obrisan = true;
-                                    foreach (Namestaj nam in lista_namestaja)
-                                    {
-                                        if (nam.Tip_Namestaja == n.Id)
-                                        {
-                                            nam.NaStanju = false;
-                                        }
-                                    }
-                                    GenericSerialize.Serialize("tipovi_namestaja.xml", lista_tipova);
-                                    GenericSerialize.Serialize("listaNam.xml", lista_namestaja);
-                                    view.Refresh();
-                                    break;
-                                }
-                                else if (n.Obrisan == true)
-                                {
-                                    n.Obrisan = false;
-                                    GenericSerialize.Serialize("tipovi_namestaja.xml", lista_tipova);
 
-                                    break;
-                                }
-                                
-
-                            }
-                        }
-
+                        Baza.TipNamestajaBaza.TipNamestajaIzbrisi(ob);
+                        RadSaPodacima.Instance.TipoviNamestaja.Remove(ob);
+                        Baza.NamestajBaza.NamestajIzbrisiByTip(ob);
+                        RadSaPodacima.Instance.TipoviNamestaja.Clear();
+                        Baza.TipNamestajaBaza.popunjavanjeTipaNamestaja();
+                        RadSaPodacima.Instance.Namestaj.Clear();
+                        Baza.NamestajBaza.popunjavanjeNamestaja();
+                        view.Refresh();
                     }
                 }
 
                 else if (operacija.Equals("dodatneUsluge"))
                 {
-                    var listaUsluga = RadSaPodacima.Instance.DodatneUsluge;
+                    var listaUsluga = RadSaPodacima.Instance.DodatnaUsluga;
                     var ob = (DodatnaUsluga)Objekat;
                     if (ob == null)
                     {
@@ -347,25 +313,11 @@ namespace POP_SF49_16GUI.GUI
                     }
                     else if(ob != null)
                     {
-                        foreach (DodatnaUsluga d in listaUsluga)
-                        {
-                            if (d.Id == ob.Id)
-                            {
-                                if (d.Obrisan == false)
-                                {
-                                    d.Obrisan = true;
-                                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
-                                    view.Refresh();
-                                    break;
-                                }
-                                else if (d.Obrisan == true)
-                                {
-                                    d.Obrisan = false;
-                                    GenericSerialize.Serialize("DodatneUsluge.xml", listaUsluga);
-                                    break;
-                                }
-                            }
-                        }
+                        Baza.DodatnaUslugaBaza.DodatnaUslugaIzbrisi(ob);
+                        RadSaPodacima.Instance.DodatnaUsluga.Remove(ob);
+                        RadSaPodacima.Instance.DodatnaUsluga.Clear();
+                        Baza.DodatnaUslugaBaza.popunjavanjeDodatneUsluge();
+                        view.Refresh();
                     }
 
                 }
@@ -442,7 +394,7 @@ namespace POP_SF49_16GUI.GUI
             dgPrikaz.ItemsSource = null;
             dgPrikaz.IsSynchronizedWithCurrentItem = true;
             dgPrikaz.DataContext = this;
-            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.DodatneUsluge);
+            view = CollectionViewSource.GetDefaultView(RadSaPodacima.Instance.DodatnaUsluga);
             view.Filter = PrikazNeobrisaneDodatneUsluge;
             dgPrikaz.ItemsSource = view;
             dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -450,7 +402,7 @@ namespace POP_SF49_16GUI.GUI
 
         private bool PrikazNeobrisanogNamestaja(object obj)
         {
-            return ((Namestaj)obj).NaStanju == true;
+            return ((Namestaj)obj).NaStanju == false;
         }
         private bool PrikazNeobrisanogTipaNamestaja(object obj)
         {

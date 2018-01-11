@@ -16,16 +16,19 @@ namespace POP_SF49_16GUI.model
         public ObservableCollection<Korisnik> Korisnici { get; set; }
         public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
         public ObservableCollection<Namestaj> Namestaj { get; set; }
+        public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
+        public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja { get; set; }
         public ObservableCollection<Akcija> Akcije { get; set; }
-        public ObservableCollection<DodatnaUsluga> DodatneUsluge { get; set;}
+
         public string ConnectionStr = @"Server=localhost;Initial Catalog=SalonNamestaja;Trusted_Connection=True;";
         private RadSaPodacima()
         {
-            TipoviNamestaja = GenericSerialize.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
-            Namestaj = GenericSerialize.Deserialize<Namestaj>("listaNam.xml");
+            TipoviNamestaja = new ObservableCollection<TipNamestaja>();
+            Namestaj = new ObservableCollection<Namestaj>();
             Korisnici = new ObservableCollection<Korisnik>();
-            Akcije = GenericSerialize.Deserialize<Akcija>("Akcije.xml");
-            DodatneUsluge = GenericSerialize.Deserialize<DodatnaUsluga>("DodatneUsluge.xml");
+            Akcije = new ObservableCollection<Akcija>();
+            DodatnaUsluga = new ObservableCollection<DodatnaUsluga>();
+            ProdajaNamestaja = new ObservableCollection<ProdajaNamestaja>();
         }
 
     }

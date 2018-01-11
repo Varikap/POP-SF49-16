@@ -53,8 +53,8 @@ namespace POP_SF49_16GUI.GUI
                 if (kbroj == 1)
                 {
                     izabrani.Id = lista.Count + 1;
-                    lista.Add(izabrani);
-                    GenericSerialize.Serialize("tipovi_namestaja.xml", lista);
+                    Baza.TipNamestajaBaza.TipNamestajaDodaj(izabrani);
+                    RadSaPodacima.Instance.TipoviNamestaja.Add(izabrani);
                     this.Close();
 
                 }
@@ -71,7 +71,7 @@ namespace POP_SF49_16GUI.GUI
 
                         }
                     }
-                    GenericSerialize.Serialize("tipovi_namestaja.xml", lista);
+                    Baza.TipNamestajaBaza.TipNamestajaIzmeni(izabrani);
                     this.Close();
 
                 }
