@@ -10,18 +10,25 @@
         Title="Salon namestaja" Height="600" Width="500">
     <Border Padding="6">
         <StackPanel>
-            <ToolBarTray>
-                <ToolBar>
-                    <Button Name="btnKupi" ToolTip="Dodaj u korpu">
-                        <Image Source="/Resources/Change.bmp" />
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
             <Border Background="DarkSlateBlue">
-                <DataGrid IsReadOnly="True" CanUserAddRows="False" Height="300" Width="auto" Margin="10" Name="dgPrikaz" SelectedItem="{Binding Path=Objekat}">
+                <DataGrid IsReadOnly="True" CanUserAddRows="False" Height="300" Width="auto" Margin="10" Name="dgPrikaz" SelectedItem="{Binding Path=Namestaj}" AutoGeneratingColumn="prikaz3">
 
                 </DataGrid>
             </Border>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <Label Content="Kolicina" FontSize="15" Height="59"></Label>
+                    <Button Name="btnBack" Click="btnBack_Click" Content="Back" Margin="30 140 30 0"></Button>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox Name="tbKolicina" Text="{Binding Path=broj_komada_namestaja}" Margin="15 10 15 0" Height="20"></TextBox>
+                    <Button Name="btnSubmit" Click="btnSubmit_Click" Content="Submit" Margin="45 170 45 0"></Button>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Border>
 </Window>

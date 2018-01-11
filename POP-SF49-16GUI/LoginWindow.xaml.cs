@@ -56,7 +56,7 @@ namespace POP_SF49_16GUI
                             }
                             else
                             {
-                                var prozor = new GUI.AdminWindow();
+                                var prozor = new GUI.UserWindow(korisnik);
                                 this.Hide();
                                 prozor.ShowDialog();
                                 break;
