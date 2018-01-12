@@ -1,0 +1,82 @@
+use SalonNamestaja
+
+CREATE TABLE Namestaj
+(
+	Id int not null, 
+	Naziv VARCHAR(15) not null,
+	Cena int not null,
+	Kolicina int not null,
+	NaStanju bit not null,
+	AkcijskaCenaId int not null,
+	TipNamestajaid int not null
+)
+
+
+CREATE TABLE Akcija
+(
+	Id int not null,
+	Naziv varchar(30) not null,
+	DatumPocetka date not null,
+	DatumZavrsetka date not null,
+	Popust int not null,
+	Obrisan bit not null
+)
+CREATE TABLE DodatnaUsluga
+(
+	Id int not null, 
+	Naziv VARCHAR(15) not null,
+	Cena int not null,
+	Obrisan bit not null
+)
+CREATE TABLE TipoviNamestaja
+(
+	Id int not null, 
+	Naziv VARCHAR(15) not null,
+	Obrisan bit not null
+)
+CREATE TABLE ProdajaNamestaja
+(
+	Broj_Racuna int not null,
+	Broj_Komada_Namestaja int not null,
+	Kupac varchar(30) not null,
+	Datum_Prodaje date not null,
+	NamestajId int not null,
+	Obrisan bit not null 
+)
+CREATE TABLE DodatnaUsluga
+(
+	Id int not null, 
+	Naziv VARCHAR(15) not null,
+	Cena int not null,
+	Obrisan bit not null
+)
+CREATE TABLE Korisnik
+(
+	Ime varchar(15) not null,
+	Prezime varchar(15) not null,
+	Username varchar(20) not null,
+	Password varchar(20) not null,
+	Obrisan bit not null,
+	TipKorisnika varchar(15) not null
+)
+
+insert into Akcija
+	values (1,'novogodisnji','2017-12-1','2018-1-22',10,0),
+(2,'bozicni','2017-12-1','2018-1-10',20,0)
+insert into DodatnaUsluga
+	values(1,'Farbanje',200,0),
+		  (2,'Sklapanje',100,0)
+insert into Korisnik
+	values('Pera','Peric','1','1',0,'admin'),
+		  ('Djordje','Djordjevic','2','2',0,'korisnik')
+
+insert into Namestaj
+	values (1,'StoKlica',5555,20,0,1,1),
+		   (2,'Oman',5555,10,2,0,2)
+insert into TipoviNamestaja
+	values (1,'stolica',0),
+	(2,'sto',0)
+
+insert into ProdajaNamestaja
+	values (1,1,'Pera','2015-1-1',1,0),
+		   (2,33,'Djura','2016-1-1',2,0)
